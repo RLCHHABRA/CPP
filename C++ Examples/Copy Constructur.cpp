@@ -22,8 +22,8 @@ test::test(const test &t)
 }
 void test::disp()
 {
-	cout<<"Code"<<code<<endl;
-	cout<<"Price"<<price<<endl;
+	cout<<"Code "<<code<<endl;
+	cout<<"Price "<<price<<endl;
 }
 int main()
 {
