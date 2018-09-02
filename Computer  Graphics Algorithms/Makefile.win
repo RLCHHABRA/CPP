@@ -1,15 +1,15 @@
-# Project: ImpLimentation of DDA line drawing method for negative slope
+# Project: 2D - Transformation
 # Makefile created by Dev-C++ 5.11
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = "IMpemention\ of\ DDA\ for\ negative\ slope.o"
-LINKOBJ  = "IMpemention of DDA for negative slope.o"
+OBJ      = "2D\ -\ Transformation\ project.o"
+LINKOBJ  = "2D - Transformation project.o"
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -lbgi -lgdi32 -luser32 -m32
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
-BIN      = "ImpLimentation of DDA line drawing method for negative slope.exe"
+BIN      = "2D - Transformation.exe"
 CXXFLAGS = $(CXXINCS) -m32
 CFLAGS   = $(INCS) -m32
 RM       = rm.exe -f
@@ -24,5 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-"IMpemention\ of\ DDA\ for\ negative\ slope.o": IMpemention\ of\ DDA\ for\ negative\ slope.cpp
-	$(CPP) -c "IMpemention of DDA for negative slope.cpp" -o "IMpemention of DDA for negative slope.o" $(CXXFLAGS)
+"2D\ -\ Transformation\ project.o": 2D\ -\ Transformation\ project.cpp
+	$(CPP) -c "2D - Transformation project.cpp" -o "2D - Transformation project.o" $(CXXFLAGS)
