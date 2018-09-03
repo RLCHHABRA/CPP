@@ -2,6 +2,7 @@
 #include<conio.h>
 #include<stdlib.h>
 #include<graphics.h>
+#include<cmath>
 using namespace std ; 
 class transformation
 {
@@ -10,8 +11,8 @@ class transformation
     public:
     	void menu();
     	void translation();
-    //	void scaling();
-    //	void rotation();
+    	void shearing();
+    	void rotation();
     //	void mid_point_transformation();
     //	void transformation_parallal_line();
     //	void transformation_intersecting_line();
@@ -22,7 +23,7 @@ void transformation::menu()
 	cout<<"\n\t************ Welcome To 2D - Transformation ****************"<<endl;
     cout<<"Please Enter your choice"<<endl;
     cout<<"1.Translation"<<endl;
-    cout<<"2.Scaling"<<endl;
+    cout<<"2.Shearing"<<endl;
     cout<<"3.Rotation"<<endl;
     cout<<"4.Mid -Point transformation"<<endl;
     cout<<"5.Transformation of parallal lines"<<endl;
@@ -45,8 +46,8 @@ int main()
     			getch();
     			cleardevice();
     			break;
-    	/*	case 2:
-    			obj.scaling();
+    		case 2:
+    			obj.shearing();
     			getch();
     			cleardevice();
     			break;
@@ -55,7 +56,7 @@ int main()
     			getch();
     			cleardevice();
     			break;
-    		case 4:
+    	/*	case 4:
     			obj.mid_point_transformation();
     			getch();
     			cleardevice();
@@ -103,4 +104,94 @@ void transformation::translation()
 	cout<<"After Translation new line is "<<endl;
 	setcolor(2);
 	rectangle(x1+3,y1+3, x , y );
+}
+void transformation::shearing()
+{   
+    int shx , shy ,  ch = 0 ; 
+	cout<<"Before shearing"<<endl;
+    setcolor(7);
+	line(50,50,200,50);
+	line(200,50,200,200);
+	line(200,200,50,200);
+	line(50,200,50,50);
+	getch();
+	setcolor(RED);
+	cout<<"Please enter your choice"<<endl;
+	cout<<"1.Shearing in  x axis"<<endl; 
+	cout<<"2.Shearing in y axis"<<endl;
+	cout<<"3.Shearing in both axis"<<endl;
+	cin>>ch; 
+	switch(ch)
+	{
+		case 1:
+			cout<<"Enter shearing value of shx"<<endl;
+			cin>>shx; 
+			cout<<"After shearing"<<endl;
+				line(50,50,200,50);
+            	line(200,50,200+shx,200);
+            	line(200+shx,200,50+shx,200);
+            	line(50+shx,200,50,50);
+            getch();
+            cleardevice();
+            break ; 
+        case 2:
+        	cout<<"Enter shearing value of shy"<<endl;
+			cin>>shy; 
+			cout<<"After shearing"<<endl;
+        		line(50,50,200,50+shy);
+				line(200,50+shy,200,200+shy);
+				line(200,200+shy,50,200);
+				line(50,200,50,50);
+				getch();
+				cleardevice();
+				break;
+		case 3:
+			cout<<"Enter shearing value of shx and shy"<<endl;
+			cin>>shx>>shy;
+		    line(50,50,200,50+shy);
+			line(200,50+shy,200+shx,200+shy);
+			line(200+shx,200+shy,50+shx,200);
+			line(50+shx,200,50,50);
+			getch();
+			cleardevice();
+			break ; 
+	}
+}
+void transformation::rotation()
+{   int thita , ch ; 
+    float a , x1 , y1 ; 
+    setcolor(7);
+	cout<<"Before ration "<<endl; 
+	line(300,300,500,500);
+	getch();
+	setcolor(RED);
+	cout<<"Please enter your choice"<<endl; 
+	cout<<"1.Anticlocwise Rotation"<<endl; 
+	cout<<"2.Clockwise Rotation"<<endl;
+	cin>>ch; 
+	switch(ch)
+	{
+		case 1:
+			cout<<"Enter Rotation angle"<<endl;
+			cin>>thita;
+			a = (thita*3.14)/180 ; 
+			x1 = 500*cos(a) + 500*sin(a) ; 
+			y1 = -500*sin(a) + 500*cos(a);
+			cout<<"After rotation"<<endl; 
+			line(300,300,x1, y1);
+			getch();
+			cleardevice();
+			break ; 
+		case 2:
+			cout<<"Enter Rotation angle"<<endl;
+			cin>>thita; 
+			a = (thita*3.14)/180 ; 
+			x1 = 500*cos(a) - 500*sin(a) ; 
+			y1 = 500*sin(a) + 500*cos(a) ; 
+			cout<<"After rotation"<<endl;
+			line(300,300,x1, y1) ; 
+			getch() ; 
+			cleardevice(); 
+			break  ; 
+	}
 }
