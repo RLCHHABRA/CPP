@@ -4,6 +4,12 @@
 #include<graphics.h>
 #include<cmath>
 using namespace std ; 
+// for cohen sutherland line cliping 
+int compute_code(double , double , double , double, double , double);
+void cohen_sutherland(double , double , double , double);
+const int INSIDE = 0 ; const int TOP = 8 ; const int BOTTOM = 4 ; const int RIGHT = 2 ; const int LEFT = 1 ; 
+// decimal number will automatically change in binary number
+// above functions are use in sutherland line clipping 
 class transformation
 {
 	private:
@@ -13,7 +19,7 @@ class transformation
     	void translation();
     	void shearing();
     	void rotation();
-    //	void mid_point_transformation();
+    	void cohen_sutherland_line_clipping();
     //	void transformation_parallal_line();
     //	void transformation_intersecting_line();
     
@@ -25,7 +31,7 @@ void transformation::menu()
     cout<<"1.Translation"<<endl;
     cout<<"2.Shearing"<<endl;
     cout<<"3.Rotation"<<endl;
-    cout<<"4.Mid -Point transformation"<<endl;
+    cout<<"4.Cohen sutherland line clipping"<<endl;
     cout<<"5.Transformation of parallal lines"<<endl;
     cout<<"6.Transformation of intersecting lines"<<endl;
     cout<<"7.exit";
@@ -56,12 +62,12 @@ int main()
     			getch();
     			cleardevice();
     			break;
-    	/*	case 4:
-    			obj.mid_point_transformation();
+    		case 4:
+    			obj.cohen_sutherland_line_clipping();
     			getch();
     			cleardevice();
     			break ; 
-    		case 5:
+    	/*	case 5:
     			obj.transformation_parallal_line();
     			getch();
     			cleardevice();
@@ -195,3 +201,105 @@ void transformation::rotation()
 			break  ; 
 	}
 }
+void transformation::cohen_sutherland_line_clipping()
+{
+	double Xmin , Ymin , Xmax , Ymax ; 
+	cout<<"Enter Value of Xmin , Ymin , Xmax , Ymax to draw window"<<endl; 
+	cin>>Xmin>>Ymin>>Xmax>>Ymax;
+    cohen_sutherland(Xmin , Ymin , Xmax , Ymax );
+}
+void cohen_sutherland(double Xmin, double Ymin,double Xmax , double Ymax )
+{  
+    double x1 ,y1, x2,y2 , x ,y ; 
+    int code1 =0  , code2 =0 , out_code =0 ; 
+    setcolor(7) ; 
+	rectangle(Xmin, Ymin , Xmax , Ymax);//Create a window ;
+	getch();
+	cout<<"Enter point p1 of line"<<endl; 
+	cin>>x1>>y1;
+	cout<<"ENter point p2 of line"<<endl; 
+	cin>>x2>>y2;
+	cout<<"before clipping"<<endl;
+	setcolor(BLUE);
+	line(x1,y1,x2,y2);
+	getch();
+	cleardevice();
+	code1 = compute_code(x1,y1,Xmin, Ymin , Xmax , Ymax ); 
+	code2 = compute_code(x2,y2,Xmin, Ymin , Xmax , Ymax) ; 
+	bool acept = false ; 
+	while(true)
+	{
+		if((code1 ==0 )&&( code2 == 0 ))
+		{  
+		    getch();
+			acept = true ; //both points are inside the window
+			break ; 
+		}
+		else if (code1 & code2)
+		{	
+		   
+			break ; //both point are outside the window ;
+		}
+		else // one point is inside the window and other is outside the window
+		{   
+			if(code1 !=0)
+			out_code = code1 ; 
+			else 
+			out_code = code2 ; 
+			if(out_code & TOP)
+			{ 
+			
+			 y = Ymax ; 
+			 x = x1 + (x2-x1)*(Ymax - y1)/(y2-y1); 	
+			}
+			if(out_code & BOTTOM)
+			{ 
+			   
+				y = Ymin ; 
+			    x = x1 + (x2-x1)*(Ymin - y1)/(y2-y1); 		
+			}
+			if(out_code & RIGHT)
+			{  
+				x = Xmax ; 
+				y = y1 + (y2-y1)*(Xmax - x1)/(x2-x1);
+			}
+			if(out_code & LEFT)
+			{   
+			    
+				x = Xmin; 
+				y = y1 + (y2-y1)*(Xmin - x1)/(x2-x1);
+			}
+			if(out_code == code1)
+			{  
+				x1 = x ; y1 = y ; 
+			code1 = 	compute_code(x1,y1,Xmin,Ymin,Xmax,Ymax); 
+			}
+			else
+			{
+			
+				x2 = x ; y2 = y ; 
+			 code2 = 	compute_code(x2,y2,Xmin,Ymin,Xmax,Ymax);
+			}
+		}
+	}
+	if(acept)
+	    
+	{  
+	    cout<<"After clipping"<<endl;
+	    setcolor(7);
+	    rectangle(Xmin,Ymin,Xmax , Ymax);
+		setcolor(RED);
+		line(x1,y1, x2,y2);
+		getch();
+	}
+}
+int compute_code(double x, double y,double Xmin, double Ymin,double Xmax , double Ymax )
+{  
+	int code = 0 ; 
+	if(x<Xmin) 	code |= LEFT ; 
+	if(x>Xmax)	code |= RIGHT ; 
+	if(y<Ymin)	code |=BOTTOM ; 
+	if(y>Ymax)	code |=TOP ; 
+	return code ; 
+}
+
