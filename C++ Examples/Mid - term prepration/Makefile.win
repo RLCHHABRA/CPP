@@ -1,15 +1,15 @@
-# Project: 0 to 9 digits project
+# Project: Polygon seed filling boundary filling algo
 # Makefile created by Dev-C++ 5.11
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = "0\ to\ 9\ digit\ project.o"
-LINKOBJ  = "0 to 9 digit project.o"
+OBJ      = "Boundary\ filling\ algo.o"
+LINKOBJ  = "Boundary filling algo.o"
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -lbgi -lgdi32 -luser32 -m32
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
-BIN      = "0 to 9 digits project.exe"
+BIN      = "Polygon seed filling boundary filling algo.exe"
 CXXFLAGS = $(CXXINCS) -m32
 CFLAGS   = $(INCS) -m32
 RM       = rm.exe -f
@@ -24,5 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-"0\ to\ 9\ digit\ project.o": 0\ to\ 9\ digit\ project.cpp
-	$(CPP) -c "0 to 9 digit project.cpp" -o "0 to 9 digit project.o" $(CXXFLAGS)
+"Boundary\ filling\ algo.o": Boundary\ filling\ algo.cpp
+	$(CPP) -c "Boundary filling algo.cpp" -o "Boundary filling algo.o" $(CXXFLAGS)
