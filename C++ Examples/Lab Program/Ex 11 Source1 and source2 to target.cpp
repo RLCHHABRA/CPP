@@ -67,6 +67,7 @@ int main()
 	{
 		file3<<f3[i]<<"\n" ; 
 	}
+	cout<<"Content Write in Target file successefully !!"<<endl;
 	file3.close()  ; 
 	getch() ; 
 	return 0 ; 	
